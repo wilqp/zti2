@@ -16,8 +16,26 @@ angular.module("myApp.factoryBookmarksService", ["firebase"])
         bookmarks.$add(bookmark); 
     };
     
+     var removeBookmark = function(index){
+        for (var i = 0, len = bookmarks.length; i < len; i++) {
+          if (bookmarks[i].id === index) {
+                bookmarks.$remove(i);
+          }
+        } 
+    };
+    
+   var removeBookmarksForCategory = function(category){
+        for (var i = 0, len = bookmarks.length; i < len; i++) {
+          if (bookmarks[i].categoryname === category.name) {
+                bookmarks.$remove(i);
+          }
+        }
+    };
+    
 return{
         getBookmarks: getBookmarks,
-        addBookmark: addBookmark
+        addBookmark: addBookmark,
+        removeBookmark: removeBookmark,
+        removeBookmarksForCategory: removeBookmarksForCategory
     }
     })

@@ -9,7 +9,7 @@ angular.module('myApp',["ui.router", "myApp.factoryBookmarksService","myApp.fact
           $urlRouterProvider.otherwise('/bookmark');
     })
 
-.constant('FIREBASE_URI', 'https://apk3a.firebaseio.com/')
+.constant('FIREBASE_URI', 'https://apk3.firebaseio.com/')
     
 .controller('MainCtrl', function($location, $scope,  CategoriesService, BookmarksService){
    
@@ -26,7 +26,13 @@ $scope.addBookmark = function(bookmark){
         
  $scope.removeCategory = function(){
             CategoriesService.removeCategory($scope.currentCategory.name);
+            BookmarksService.removeBookmarksForCategory($scope.currentCategory);
         }
+$scope.removeBookmark = function(){
+            BookmarksService.removeBookmark($scope.currentBookmark.id);
+            $scope.startCreating();
+        }
+        
         
 $scope.currentCategory = null;
 $scope.currentBookmark = null;
