@@ -15,22 +15,44 @@
 </head>
 
 <body ng-controller="MainCtrl">
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #99FFFF; border-color: #000000;"><!-- górny pasek -->
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #99FFFF; border-color: #000000;">
   <div class="container-fluid">
-    <p class="text-center"><br></p>
+    <p class="text-center" style="color:#ffffff; font-size:25px">Suchar codzienny</p>
   </div>
 </nav>
 
-    <div class="jumbotron" style="background-color: #333333; border-color: #aaaaaa;"><!--tło kategorii-->
+
+
+    <div class="jumbotron" style="background-color: #333333; border-color: #aaaaaa;">
+    <div class="container">
+    <div class="row" style="color: #F5F5F5">
+     <div class="col-sm-4">
+         <h3>Kategorie</h3>
+          <button type="button" class="btn btn-danger btn-block" ng-click="removeCategory()">Usuń kategorię</button>
+         <br>
+         <ul class="nav nav-pills nav-stacked" role="tablist">
+               <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}" style=" border: 1px solid; border-radius: 5px;background-color: #FFFFFF;">
+                   <a ng-click="setCurrentCategory(category)">
+                   {{category.name}}
+                   </a>
+               </li>
+        </ul>
+        <br><br><br><br>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="jumbotron" style="background-color: #aaaaaa; border-color: #aaaaaa;">
     <div class="container">
     <div class="row" style="color: #F5F5F5">
             <h4>Dodaj kategorię</h4>
             <form role="form" ng-submit="addCategory(category)">
                 <div class="form-group">
                    <label for="name">Kategoria</label>
-                   <input id="name" class="form-control" type="text" ng-model="category.name" placeholder="Nazwa kategorii" />
+                   <input id="name" class="form-control" type="text" ng-model="category.name" placeholder="Nowa kategoria" />
                 </div>
-                   <button class="btn btn-default" type="submit">Dodaj </button>
+                   <button class="btn btn-default" type="submit">Dodaj</button>
             </form>
 
     </div>
@@ -40,7 +62,7 @@
 
 
 
-<nav class="navbar navbar-default" style="background-color: #660099; border-color: #000000;"><!--dolny pasek-->
+<nav class="navbar navbar-default" style="background-color: #000000; border-color: #000000;">
   <div class="container-fluid" >
       <p class="text-center"><br></p>
   </div>

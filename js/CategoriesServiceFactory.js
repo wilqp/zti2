@@ -13,8 +13,18 @@ angular.module("myApp.factoryCategoriesService", ["firebase"])
         category.id = categories.length;
         categories.$add(category); 
     };
+    
+    var removeCategory = function(index){
+          for (var i = 0, len = categories.length; i < len; i++) {
+          if (categories[i].name === index) {
+                categories.$remove(i);
+          }
+        } 
+    };
+
 return{
         getCategories: getCategories,
-        addCategory: addCategory
+        addCategory: addCategory,
+        removeCategory: removeCategory
     }
     })
