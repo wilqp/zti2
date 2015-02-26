@@ -1,0 +1,9 @@
+{
+  "firebase": "apk3",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
