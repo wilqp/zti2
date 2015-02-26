@@ -17,8 +17,8 @@
 
 <body ng-controller="MainCtrl">
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #99FFFF; border-color: #000000;"> <!---górny pasek-->
-  <div class="container-fluid">
-    <p class="text-center" style="color:#ffffff; font-size:25px">Suchar codzienny</p>
+<div class="container-fluid">
+    <p class="text-center" style="color:#ffffff; font-size:25px" ng-click="">Suchar codzienny</p>
   </div>
 </nav>
 
@@ -42,6 +42,23 @@
         <button type="button" class="btn btn-danger btn-block" ng-click="removeCategory()">Usuń kategorię</button>
         <br><br><br><br>
     </div>
+    <div class="col-sm-4" >
+        <h3>Strony</h3>
+        <br>
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+           <li ng-repeat="bookmark in bookmarks | filter:currentCategory.name" ng-class="{'active':isCurrentBookmark(bookmark)}" style=" border: 1px solid; border-radius: 5px;background-color: #FFFFFF;">
+                <a ng-click="setCurrentBookmark(bookmark)" ui-sref="bookmark"> {{bookmark.title}} </a>
+           </li>
+    </ul>
+    <br><br><br><br>
+    </div>
+    
+    <div class="col-sm-4">
+        <h3>Dane strony</h3>
+        <br>
+        <div ui-view style="color: #000000"></div>
+    <br><br>
+    
     </div>
     </div>
     </div>
@@ -53,9 +70,9 @@
             <form role="form" ng-submit="addCategory(category)">
                 <div class="form-group">
                    <label for="name">Kategoria</label>
-                   <input id="name" class="form-control" type="text" ng-model="category.name" placeholder="Nowa kategoria" />
+                   <input id="name" class="form-control" type="text" ng-model="category.name" placeholder="kategoria" />
                 </div>
-                   <button class="btn btn-default" type="submit">Dodaj </button>
+                   <button class="btn btn-default" type="submit">Dodaj kategorię</button>
             </form>
 
     </div>
@@ -66,7 +83,7 @@
     <div class="container">
     <div class="row">
     <div ng-if="shouldShowCreating()">
-    <h4>Dodaj zakładkę</h4>
+    <h4>Dodaj stronę</h4>
     <form ng-submit="addBookmark(bookmark)" role="form">
              <div class="form-group">
                 <label for="newBookmarkTitle">Nazwa</label>
@@ -86,7 +103,7 @@
                      ng-options="category.name as category.name for category in categories">
                 </select>
             </div>
-            <button class="btn btn-default" type="submit">Dodaj zakładkę</button>
+            <button class="btn btn-default" type="submit">Dodaj stronę</button>
     </form>
     </div>
     </div>
