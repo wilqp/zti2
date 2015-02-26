@@ -1,0 +1,8 @@
+<div ng-if="shouldShowBookmark()">
+<ul class="list-group">
+          <li class="list-group-item"><span class="badge">Nazwa</span>{{currentBookmark.title}}</li>
+          <li class="list-group-item"><span class="badge">URL</span> <a href="{{currentBookmark.url}}">{{currentBookmark.url}}</a></li>
+          <li class="list-group-item"><span class="badge">Opis</span> {{currentBookmark.description}} </li>
+          <li class="list-group-item"><span class="badge">Kategoria</span> {{currentBookmark.categoryname}}</li>
+</ul>
+</div>
