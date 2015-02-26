@@ -16,7 +16,7 @@
 </head>
 
 <body ng-controller="MainCtrl">
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #000000; border-color: #000000;" >
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #660000; border-color: #000000;" ><!--górny pasek-->
   <div class="container-fluid">
     <p class="text-center" style="color:#ffffff; font-size:25px" ng-click="">Suchar codzienny</p>
   </div>
@@ -24,7 +24,7 @@
 
 
 
-    <div class="jumbotron" style="background-color: #aaaaaa; border-color: #aaaaaa;">
+    <div class="jumbotron" style="background-color: #B2B200; border-color: #aaaaaa;">
     <div class="container">
     <div class="row" style="color: #F5F5DC">
      <div class="col-sm-4">
@@ -52,6 +52,7 @@
     </ul>
     <br>
     <button type="button" class="btn btn-danger btn-block" ng-click="removeBookmark()">Usuń stronę</button>
+    <button type="button" class="btn btn-info btn-block" ng-click="setEditedBookmark();startEditing();">Edytuj stronę</button>
     <br><br><br><br>
     </div>
     
@@ -106,11 +107,40 @@
                 </select>
             </div>
             <button class="btn btn-default" type="submit">Dodaj stronę</button>
+
     </form>
     </div>
+    
+    <div ng-show="shouldShowEditing()">
+        <h4>Zmień stronę</h4>
+        <form ng-submit="updateBookmark(editedBookmark)" role="form">
+            <div class="form-group">
+            <label for="newBookmarkTitle">Nazwa</label>
+            <input class="form-control" type="text" id="newBookmarkTitle" ng-model="editedBookmark.title">
+            </div>
+            <div class="form-group">
+            <label for="newBookmarkURL">URL</label>
+            <input class="form-control" type="text" id="newBookmarkURL" ng-model="editedBookmark.url">
+            </div>
+            <div class="form-group">
+            <label for="newBookmarkDescription">Opis</label>
+            <input class="form-control" type="text" id="newBookmarkDescription" ng-model="editedBookmark.description">
+            </div>
+            <div class="form-group">
+            <label for="newBookmarkCategory">Kategoria</label>
+            <select id = "newBookmarkCategory" class="form-control" ng-model="editedBookmark.categoryname"
+                ng-options="category.name as category.name for category in categories">
+            </select>
+            </div>
+            <button class="btn btn-default" type="submit">Zapisz zmiany</button>
+            <button class="btn btn-default" type="button"ng-click="startCreating()">Anuluj</button>
+    </form>
+    </div>
+    
     </div>
     </div>
     </div>
+
 <nav class="navbar navbar-default" style="background-color: #660099; border-color: #000000;"><!--dolny pasek-->
   <div class="container-fluid" >
       <p class="text-center"><br></p>

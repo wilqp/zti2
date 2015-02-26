@@ -32,10 +32,25 @@ angular.module("myApp.factoryBookmarksService", ["firebase"])
         }
     };
     
+    var updateBookmark = function(bookmark){
+        for (var i = 0, len = bookmarks.length; i < len; i++) {
+          if (bookmarks[i].id === bookmark.id) {
+                bookmarks[i].title = bookmark.title;
+                bookmarks[i].url = bookmark.url;
+                bookmarks[i].description = bookmark.description;
+                bookmarks[i].categoryname = bookmark.categoryname;
+                bookmarks.$save(i);
+            break;
+          }
+        }
+        
+    };
+    
 return{
         getBookmarks: getBookmarks,
         addBookmark: addBookmark,
         removeBookmark: removeBookmark,
+        updateBookmark: updateBookmark,
         removeBookmarksForCategory: removeBookmarksForCategory
     }
     })
